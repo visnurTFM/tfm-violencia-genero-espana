@@ -2,31 +2,41 @@
 
 ## Descripción
 
-Este proyecto tiene como objetivo la construcción de un dataset analítico para el estudio de la violencia de género en España mediante la integración de múltiples fuentes de datos públicas.
+Este proyecto tiene como objetivo analizar la incidencia territorial de la violencia de género en España mediante la integración de fuentes de datos oficiales y el desarrollo de un modelo analítico basado en técnicas de aprendizaje supervisado.
 
-El desarrollo se ha realizado en Databricks utilizando Apache Spark y una arquitectura de datos tipo lakehouse.
+El trabajo forma parte de un Trabajo de Fin de Máster (TFM) en Ciencia de Datos y combina ingeniería de datos, análisis exploratorio y modelado predictivo.
 
 ---
 
 ## Arquitectura
 
-Se ha implementado una arquitectura en capas:
+Se ha implementado una arquitectura tipo Lakehouse en Databricks basada en las siguientes capas:
 
-RAW → CLEAN → PREPROCESS → ANALYTICAL
+RAW: ingesta de datos originales (CSV, Excel)
+CLEAN: limpieza, normalización y tipificación
+PREPROCESS: integración de datasets (joins por provincia y año)
+ANALYTICAL: dataset final listo para análisis y modelado
 
-- RAW: datos originales
-- CLEAN: limpieza y normalización
-- PREPROCESS: integración de datasets
-- ANALYTICAL: dataset final
+Ver diagrama en: docs/arquitectura_sistema.png
 
 ---
 
 ## Dataset final
 
-- 208 observaciones
-- 52 provincias
-- Periodo: 2021–2024
-- Unidad de análisis: provincia-año
+Observaciones: 156
+Provincias: 52
+Periodo: 2021–2023
+Unidad de análisis: provincia-año
+
+Variables principales:
+
+denuncias
+víctimas
+órdenes de protección
+quebrantamientos
+renta media
+tasas de actividad, empleo y paro
+variables derivadas (tasas por 100k, ratios, etc.)
 
 ---
 
@@ -54,7 +64,22 @@ RAW → CLEAN → PREPROCESS → ANALYTICAL
 - Apache Spark (PySpark)
 - Delta Lake
 - Python
+- Power BI
 
+---
+## Modelado
+
+Se han desarrollado modelos de aprendizaje supervisado para analizar la variable objetivo:
+
+Regresión logística
+Random Forest
+
+Consideraciones:
+
+Prevención de leakage temporal
+Evaluación mediante train-test split estratificado
+Análisis de multicolinealidad
+Interpretabilidad de resultados
 ---
 
 ## Autor
